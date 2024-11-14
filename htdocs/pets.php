@@ -5,13 +5,13 @@ include("database.php");
 // Insert pets code: only process if form data is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data safely
-    $pets = $_POST['pets'];
+    $pet = $_POST['pet'];
     $species = $_POST['species '];
     $breed = $_POST['breed'];
     $name_of_pets = $_POST['name_of_pets'];
 
     // Prepare SQL query to prevent SQL injection
-    $check_sql = "SELECT petsID FROM Pets WHERE name_of_pets = ?";
+    $check_sql = "SELECT petID FROM Pets WHERE name_of_pets = ?";
     $stmt = $conn->prepare($check_sql);
     $stmt->bind_param("s", $name_of_pets);
     $stmt->execute();
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<div class='error-message'>Error: A Pet with this PetID is already exists.</div>";
     } else {
         // Proceed with insertion if no duplicate is found
-        $insert_sql = "INSERT INTO Pets (full_name, address, contact_number, date_of_birth) 
+        $insert_sql = "INSERT INTO Pets (full_name, address, contact_number, date_of_birth,clientsID) 
                        VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($insert_sql);
         $stmt->bind_param("ssss", $species, $breed, $name_of_pets, $date_of_birth);
@@ -35,24 +35,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Check if pets_id is provided for deletion
-if (isset($_GET['pets_id'])) {
-    $client_id = $_GET['pets_id'];
+if (isset($_GET['pet_id'])) {
+    $client_id = $_GET['pet_id'];
 
     // Prepare SQL query to delete a client
-    $delete_sql = "DELETE FROM Pets WHERE petsID = ?";
+    $delete_sql = "DELETE FROM Pets WHERE petID = ?";
     $stmt = $conn->prepare($delete_sql);
     $stmt->bind_param("i", $client_id); 
     if ($stmt->execute()) {
-        header("Location: pets.php?delete_success=1");
+        header("Location: pet.php?delete_success=1");
         exit();
     } else {
-        header("Location: petss.php?delete_success=0");
+        header("Location: pet.php?delete_success=0");
         exit();
     }
 }
 
 // SQL query to select all data from Pets for display
-$sql = "SELECT petsID, species , breed , name_of_pets , date_of_birth , clientsID FROM Pets";
+$sql = "SELECT petID, species , breed , name_of_pets , date_of_birth , clientsID FROM Pets";
 $result = $conn->query($sql);
 ?>
 
@@ -185,11 +185,11 @@ $result = $conn->query($sql);
         }
     </style>
     <script>
-        // Confirm deletion and redirect to clients.php after deletion
-        function deleteClient(clientID) {
-            if (confirm("Are you sure you want to delete this client?")) {
-                // Redirect to the same page with the client_id parameter
-                window.location.href = "clients.php?client_id=" + clientID;
+        // Confirm deletion and redirect to petss.php after deletion
+        function deleteClient(petsID) {
+            if (confirm("Are you sure you want to delete this pet?")) {
+                // Redirect to the same page with the pet_id parameter
+                window.location.href = "pets.php?client_id=" + petID;
             }
         }
     </script>
@@ -198,17 +198,18 @@ $result = $conn->query($sql);
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <div class="nav-container">
-        <a href="clients.php" class="nav-link">Clients List</a>
-        <a href="insert_clients.php" class="nav-link">Insert Client</a>
+        <a href="pets.php" class="nav-link">Pet List</a>
+        <a href="insert_pets.php" class="nav-link">Insert Pet</a>
     </div>
 
     <table>
         <tr>
-            <th>Client ID</th>
-            <th>Full Name</th>
-            <th>Address</th>
-            <th>Contact Number</th>
+            <th>Pets ID</th>
+            <th>Species</th>
+            <th>Breed</th>
+            <th>Pet Name</th>
             <th>Date of Birth</th>
+            <th>Client ID</th>
             <th>Actions</th>
         </tr>
 
@@ -216,12 +217,13 @@ $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $row["clientsID"] . "</td>";
-                echo "<td>" . $row["full_name"] . "</td>";
-                echo "<td>" . $row["address"] . "</td>";
-                echo "<td>" . $row["contact_number"] . "</td>";
+                echo "<td>" . $row["petID"] . "</td>";
+                echo "<td>" . $row["species"] . "</td>";
+                echo "<td>" . $row["breed"] . "</td>";
+                echo "<td>" . $row["name_of_pets"] . "</td>";
                 echo "<td>" . $row["date_of_birth"] . "</td>";
-                echo "<td><button class='delete-btn' onclick='deleteClient(" . $row["clientsID"] . ")'>Delete</button></td>";
+                echo "<td>" . $row["clientsID"] . "</td>";
+                echo "<td><button class='delete-btn' onclick='deletePet(" . $row["petID"] . ")'>Delete</button></td>";
                 echo "</tr>";
             }
         } else {

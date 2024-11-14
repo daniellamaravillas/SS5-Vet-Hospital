@@ -25,7 +25,7 @@ include("database.php");
             font-size: 2.5em;
             color: #783F8E;
             margin-bottom: 20px;
-            font-family: 'Brush Script MT', cursive;
+            font-family: 'Arial';
         }
 
         .form-container {
@@ -101,24 +101,31 @@ include("database.php");
     </div>
 
     <div class="form-container">
-        <h2>Insert New Client</h2>
-        <form action="clients.php" method="POST">
+
+                <center><h2>Insert New Client</h2>
+
+        <form action="clients.php" method="POST"></center>
+           
             <div class="form-group">
                 <label for="full_name">Full Name:</label>
                 <input type="text" id="full_name" name="full_name" required>
             </div>
+
             <div class="form-group">
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address" required>
             </div>
+
             <div class="form-group">
                 <label for="contact_number">Contact Number:</label>
                 <input type="text" id="contact_number" name="contact_number" required>
             </div>
+
             <div class="form-group">
                 <label for="date_of_birth">Date of Birth:</label>
                 <input type="date" id="date_of_birth" name="date_of_birth" required>
             </div>
+
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>

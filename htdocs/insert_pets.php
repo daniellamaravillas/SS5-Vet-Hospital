@@ -8,7 +8,7 @@ include("database.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert Client</title>
+    <title>Insert Pet</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,7 +25,7 @@ include("database.php");
             font-size: 2.5em;
             color: #783F8E;
             margin-bottom: 20px;
-            font-family: 'Brush Script MT', cursive;
+            font-family: 'Arial';
         }
 
         .form-container {
@@ -96,29 +96,36 @@ include("database.php");
 </head>
 <body>
     <div class="nav-container">
-        <a href="clients.php" class="nav-link">Clients List</a>
-        <a href="insert_clients.php" class="nav-link">Insert Clients</a>
+        <a href="pets.php" class="nav-link">Pet List</a>
+        <a href="insert_pets.php" class="nav-link">Insert Pet</a>
     </div>
 
     <div class="form-container">
-        <center><h2>Insert New Client</h2></center>
-        <form action="clients.php" method="POST">
+
+                <center><h2>Insert New Pet</h2>
+
+        <form action="pets.php" method="POST"></center>
+           
             <div class="form-group">
-                <label for="full_name">Full Name:</label>
-                <input type="text" id="full_name" name="full_name" required>
+                <label for="species">Species:</label>
+                <input type="text" id="full_name" name="species" required>
             </div>
+
             <div class="form-group">
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required>
+                <label for="breed">Breed:</label>
+                <input type="text" id="breed" name="breed" required>
             </div>
+
             <div class="form-group">
-                <label for="contact_number">Contact Number:</label>
-                <input type="text" id="contact_number" name="contact_number" required>
+                <label for="Pet Name">Pet Name:</label>
+                <input type="text" id="Pet Name" name="Pet Name" required>
             </div>
+
             <div class="form-group">
                 <label for="date_of_birth">Date of Birth:</label>
                 <input type="date" id="date_of_birth" name="date_of_birth" required>
             </div>
+
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
