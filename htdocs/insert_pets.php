@@ -1,8 +1,3 @@
-<?php  
-include("navigation.php");
-include("database.php");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +20,7 @@ include("database.php");
             font-size: 2.5em;
             color: #783F8E;
             margin-bottom: 20px;
-            font-family: 'Arial';
+            font-family: Arial;
         }
 
         .form-container {
@@ -101,14 +96,11 @@ include("database.php");
     </div>
 
     <div class="form-container">
-
-                <center><h2>Insert New Pet</h2>
-
-        <form action="pets.php" method="POST"></center>
-           
+        <center><h2>Insert New Pet</h2></center>
+        <form action="pets.php" method="POST">
             <div class="form-group">
                 <label for="species">Species:</label>
-                <input type="text" id="full_name" name="species" required>
+                <input type="text" id="species" name="species" required>
             </div>
 
             <div class="form-group">
@@ -117,8 +109,8 @@ include("database.php");
             </div>
 
             <div class="form-group">
-                <label for="Pet Name">Pet Name:</label>
-                <input type="text" id="Pet Name" name="Pet Name" required>
+                <label for="name_of_pets">Pet Name:</label>
+                <input type="text" id="name_of_pets" name="name_of_pets" required>
             </div>
 
             <div class="form-group">
