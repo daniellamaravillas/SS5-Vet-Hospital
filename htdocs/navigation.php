@@ -17,8 +17,8 @@
             <ul class="nav-links">
                 <li><a href="clients.php">Clients</a></li>
                 <li><a href="pets.php">Pets</a></li>
-                <li><a href="employee.php">Employee</a></li>
-                <li><a href="appointment.php">Appointments</a></li>
+                <li><a href="employees.php">Employee</a></li>
+                <li><a href="appointmets.php">Appointments</a></li>
             </ul>
             </nav>
         </header>
