@@ -30,9 +30,9 @@ include("database.php");
 
         .form-container {
             background-color: #BFACC8;
-            padding: 20px;
-            border-radius: 8px;
-            width: 60%;
+            padding: 30px;
+            border-radius: 10px;
+            width: 45%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
@@ -48,7 +48,7 @@ include("database.php");
 
         input[type="text"], input[type="date"] {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             border: 1px solid #4A4063;
             border-radius: 5px;
             box-sizing: border-box;
@@ -97,6 +97,7 @@ include("database.php");
 <body>
     <div class="nav-container">
         <a href="clients.php" class="nav-link">Clients List</a>
+        <a href="insert_clients.php" class="nav-link">Insert Clients</a>
     </div>
 
     <div class="form-container">
