@@ -2,6 +2,24 @@
 include("navigation.php");
 include("database.php");
 
+        $sql = "SELECT 
+        appointments.appointmentsID AS appointmentID,
+        clients.full_name AS client_fullname,
+        DATE(appointments.date_and_time) AS appointment_date,
+        TIME(appointments.date_and_time) AS appointment_time,
+        appointments.date_and_time AS date_and_time,
+        appointments.contact_number AS contact_number,
+        appointments.clientsID AS clientsID,
+        employees.full_name AS employee_fullname
+        FROM 
+        appointments
+        JOIN 
+        clients ON appointments.clientsID = clients.clientsID
+        JOIN 
+        employees ON appointments.employeesID = employees.employeesID
+        ORDER BY 
+        client_fullname ASC";
+
 // Insert appointment code: only process if form data is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data safely
