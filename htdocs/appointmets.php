@@ -2,23 +2,13 @@
 include("navigation.php");
 include("database.php");
 
-        $sql = "SELECT 
-        appointments.appointmentsID AS appointmentID,
-        clients.full_name AS client_fullname,
-        DATE(appointments.date_and_time) AS appointment_date,
-        TIME(appointments.date_and_time) AS appointment_time,
-        appointments.date_and_time AS date_and_time,
-        appointments.contact_number AS contact_number,
-        appointments.clientsID AS clientsID,
-        employees.full_name AS employee_fullname
-        FROM 
-        appointments
-        JOIN 
-        clients ON appointments.clientsID = clients.clientsID
-        JOIN 
-        employees ON appointments.employeesID = employees.employeesID
-        ORDER BY 
-        client_fullname ASC";
+        $sql ="SELECT Appointment.appoitmentsID , clients.full_name , pet.name_of_pets FROM Appointmets
+INNER JOIN clients ON appointments.clientID=clientsID
+INNER JOIN employees ON appointments.employeesID = employees.employeesID
+INNER JOIN pets ON appointments.petsID= pets.petsID
+ORDER BY client_fullname , employees_full_name ASC";
+
+
 
 // Insert appointment code: only process if form data is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -237,13 +227,12 @@ $result = $conn->query($sql);
         $formatted_time = date("g:i A", strtotime($row["time"])); // Format the time
 
         echo "<tr>";
-        echo "<td>" . $row["appointmentsID"] . "</td>";
-        echo "<td>" . $row["contact_number"] . "</td>";
-        echo "<td>" . $row["clientsID"] . "</td>";
-        echo "<td>" . $row["employeesID"] . "</td>";
-        echo "<td>" . $formatted_time . "</td>";
-        echo "<td>" . $formatted_date . "</td>";
-        echo "<td>" . $row["petID"] . "</td>";
+        echo "<td>" . $result["appointmentID"] . "</td>";
+            echo "<td>" . $result["client_fullname"] . "</td>";
+            echo "<td>" . $result["date"] . "</td>";
+            echo "<td>" . $result["time"] . "</td>";
+            echo "<td>" . $result["name_of_pets"] . "</td>";
+            echo "<td>" . $result["employees_full_name"] . "</td>";
         echo "<td><a href='appointments.php?appointmentsID=" . $row["appointmentsID"] . "' class='delete-btn' onclick=\"return confirm('Are you sure you want to delete this appointment?');\">Delete</a></td>";
         echo "</tr>";
     }

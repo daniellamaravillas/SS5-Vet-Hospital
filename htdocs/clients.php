@@ -1,5 +1,5 @@
 <?php  
-include("navigation.php");
+include ("navigation.php");
 include("database.php");
 
 // Insert client code: only process if form data is submitted
@@ -63,128 +63,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clients Table</title>
-    <style>
-        /* Reset styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #C8C6D7;
-            color: #4A4063;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-
-        h2 {
-            font-size: 2.5em;
-            color: #783F8E;
-            margin-bottom: 20px;
-            font-family: 'Brush Script MT', cursive;
-        }
-
-        /* Section div styling */
-        .section {
-            width: 80%;
-            padding: 15px;
-            margin: 10px 0;
-            background-color: #BFACC8;
-            color: #4A4063;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        .insert-section {
-            background-color: #4F1271;
-            color: #FFFFFF;
-        }
-
-        /* Navigation styling */
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .nav-link {
-            margin: 0 15px;
-            padding: 10px 20px;
-            background-color: #4F1271;
-            color: #FFFFFF;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        /* Hover effects for the navigation links */
-        .nav-link:hover {
-            background-color: #783F8E;
-            transform: scale(1.1);
-            text-decoration: underline;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Table styling */
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #BFACC8;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        th, td {
-            padding: 15px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #4A4063;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        td {
-            background-color: #C8C6D7;
-            color: #4A4063;
-        }
-
-        /* Hover effect for table rows */
-        tr:hover td {
-            background-color: #783F8E;
-            color: #fff;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Delete button styling */
-        .delete-btn {
-            background-color: #D32F2F;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .delete-btn:hover {
-            background-color: #9A0007;
-            transform: scale(1.1);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <script>
         // Confirm deletion and redirect to clients.php after deletion
         function deleteClient(clientID) {

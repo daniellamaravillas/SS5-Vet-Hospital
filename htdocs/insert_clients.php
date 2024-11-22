@@ -126,6 +126,8 @@ include("database.php");
                 <input type="date" id="date_of_birth" name="date_of_birth" required>
             </div>
 
+
+
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>

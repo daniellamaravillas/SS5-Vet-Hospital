@@ -64,9 +64,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Table</title>
-    <style>
-        /* Styles here (no changes needed) */
-    </style>
+    <link rel="stylesheet" href="style.css">
     <script>
         // Confirm deletion and redirect to employees.php after deletion
         function deleteEmployee(employeesID) {
