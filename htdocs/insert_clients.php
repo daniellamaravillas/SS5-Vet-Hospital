@@ -94,7 +94,7 @@ $conn->close();
 
     <div class="form-container">
         <h2>Insert New Client</h2>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="clients.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="full_name">Full Name:</label>
                 <input type="text" id="full_name" name="full_name" required>
