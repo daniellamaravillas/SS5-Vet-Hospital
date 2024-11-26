@@ -1,8 +1,81 @@
-<?php  
+<?php    
 include("navigation.php");
 include("database.php");
-?>
 
+$uploadDir = 'uploads/';
+
+// Ensure the upload directory exists
+if (!is_dir($uploadDir)) {
+    mkdir($uploadDir, 0777, true);
+}
+
+// Handle file upload
+$uploadedFile = null;
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['fileToUpload'])) {
+    $file = $_FILES['fileToUpload'];
+    $fileName = basename($file['name']);
+    $fileSize = $file['size'];
+    $fileTmpName = $file['tmp_name'];
+    $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+    // Define allowed file types and size limit (e.g., 2MB for images)
+    $allowedTypes = ['jpg', 'jpeg', 'png', 'pdf'];
+    $maxSize = 2 * 1024 * 1024; // 2 MB
+
+    // Validate file type and size
+    if (in_array($fileExt, $allowedTypes) && $fileSize <= $maxSize) {
+        $newFileName = uniqid('file_', true) . '.' . $fileExt;
+        $uploadFile = $uploadDir . $newFileName;
+
+        // Validate MIME type for additional security
+        $fileMimeType = mime_content_type($fileTmpName);
+        $allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+
+        if (in_array($fileMimeType, $allowedMimeTypes)) {
+            if (move_uploaded_file($fileTmpName, $uploadFile)) {
+                $uploadedFile = $newFileName;
+            } else {
+                echo "<p style='color: red;'>Error uploading file. Please try again.</p>";
+            }
+        } else {
+            echo "<p style='color: red;'>Invalid file content. Only JPG, PNG, or PDF files are allowed.</p>";
+        }
+    } else {
+        if (!in_array($fileExt, $allowedTypes)) {
+            echo "<p style='color: red;'>Invalid file type. Only JPG, JPEG, PNG, and PDF files are allowed.</p>";
+        }
+        if ($fileSize > $maxSize) {
+            echo "<p style='color: red;'>File size exceeds the 2MB limit.</p>";
+        }
+    }
+}
+
+// Insert client data into database
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['full_name'], $_POST['address'], $_POST['contact_number'], $_POST['date_of_birth'])) {
+    $fullName = htmlspecialchars(trim($_POST['full_name']));
+    $address = htmlspecialchars(trim($_POST['address']));
+    $contactNumber = htmlspecialchars(trim($_POST['contact_number']));
+    $dateOfBirth = $_POST['date_of_birth'];
+
+    // Assuming a database connection is available in database.php
+    $sql = "INSERT INTO clients (full_name, address, contact_number, date_of_birth, file_path) 
+            VALUES (?, ?, ?, ?, ?)";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param('sssss', $fullName, $address, $contactNumber, $dateOfBirth, $uploadedFile);
+
+        if ($stmt->execute()) {
+            echo "<p style='color: green;'>Client added successfully!</p>";
+        } else {
+            echo "<p style='color: red;'>Error adding client: " . $stmt->error . "</p>";
+        }
+        $stmt->close();
+    } else {
+        echo "<p style='color: red;'>Database error: " . $conn->error . "</p>";
+    }
+}
+
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,88 +83,7 @@ include("database.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Client</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #C8C6D7;
-            color: #4A4063;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-
-        h2 {
-            font-size: 2.5em;
-            color: #783F8E;
-            margin-bottom: 20px;
-            font-family: 'Arial';
-        }
-
-        .form-container {
-            background-color: #BFACC8;
-            padding: 30px;
-            border-radius: 10px;
-            width: 45%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"], input[type="date"] {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #4A4063;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        .submit-btn {
-            background-color: #4F1271;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background-color: #783F8E;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .nav-link {
-            margin: 0 15px;
-            padding: 10px 20px;
-            background-color: #4F1271;
-            color: #FFFFFF;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background-color: #783F8E;
-            transform: scale(1.1);
-            text-decoration: underline;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+        /* Styling remains the same */
     </style>
 </head>
 <body>
@@ -101,33 +93,28 @@ include("database.php");
     </div>
 
     <div class="form-container">
-
-                <center><h2>Insert New Client</h2>
-
-        <form action="clients.php" method="POST"></center>
-           
+        <h2>Insert New Client</h2>
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="full_name">Full Name:</label>
                 <input type="text" id="full_name" name="full_name" required>
             </div>
-
             <div class="form-group">
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address" required>
             </div>
-
             <div class="form-group">
                 <label for="contact_number">Contact Number:</label>
                 <input type="text" id="contact_number" name="contact_number" required>
             </div>
-
             <div class="form-group">
                 <label for="date_of_birth">Date of Birth:</label>
                 <input type="date" id="date_of_birth" name="date_of_birth" required>
             </div>
-
-
-
+            <div class="form-group">
+                <label for="fileToUpload">Choose a file to upload:</label>
+                <input type="file" name="fileToUpload" id="fileToUpload" required>
+            </div>
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>

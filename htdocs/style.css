@@ -1,169 +1,45 @@
-/* Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* General Styles */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #C8C6D7; /* Lavender Gray */
 }
 
-/* Centered Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2c3e50;
-  padding: 15px 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #4A4063; /* English Violet */
+  padding: 1rem 2rem;
 }
 
-.navbar h1 a {
-  color: #ecf0f1;
+.navbar a {
+  color: #C8C6D7; /* Lavender Gray */
   text-decoration: none;
-  font-size: 28px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2rem;
+  margin: 0 1rem;
+  transition: color 0.3s ease;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
+.navbar a:hover {
+  color: #BFACC8; /* Thistle */
 }
 
-.nav-links li {
-  margin: 0 15px;
-}
-
-.nav-links a {
-  color: #ecf0f1;
-  text-decoration: none;
-  font-size: 18px;
-  padding: 8px 16px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.nav-links a:hover {
-  background-color: #34495e;
-  border-radius: 5px;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .nav-links {
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .nav-links li {
-    margin: 10px 0;
-  }
-}
-
-h2 {
-  font-size: 2.5em;
-  color: #783F8E;
-  margin-bottom: 20px;
-  font-family: 'Brush Script MT', cursive;
-}
-
-/* Section div styling */
-.section {
-  width: 80%;
-  padding: 15px;
-  margin: 10px 0;
-  background-color: #BFACC8;
-  color: #4A4063;
-  border-radius: 8px;
-  text-align: center;
-  font-size: 1.5em;
+.navbar .logo {
+  font-size: 1.5rem;
   font-weight: bold;
+  color: #783F8E; /* Maximum Purple */
 }
 
-.insert-section {
-  background-color: #4F1271;
-  color: #FFFFFF;
-}
-
-/* Navigation styling */
-.nav-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.nav-link {
-  margin: 0 15px; /* Horizontal spacing between the links */
-  padding: 10px 20px;
-  background-color: #4F1271;
-  color: #FFFFFF;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: all 0.3s ease; /* Smooth transition for all effects */
-}
-
-/* Hover effects for the navigation links */
-.nav-link:hover {
-  background-color: #783F8E; /* Change background color */
-  transform: scale(1.1); /* Slightly enlarge the link */
-  text-decoration: underline; /* Add underline effect */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
-}
-
-/* Table Styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 18px;
-  text-align: left;
-}
-
-table th, table td {
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-}
-
-table th {
-  background-color: #2c3e50;
-  color: white;
-}
-
-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-table tr:hover {
-  background-color: #ddd;
-}
-
-/* Button Styles */
-.delete-btn {
-  background-color: #D32F2F;
-  color: white;
+.navbar .button {
+  background-color: #4F1271; /* Blue Violet Color Wheel */
+  color: #FFF;
+  padding: 0.5rem 1rem;
   border: none;
-  padding: 8px 16px;
-  cursor: pointer;
   border-radius: 5px;
-  font-weight: bold;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.delete-btn:hover {
-  background-color: #9A0007; /* Darker red on hover */
-  transform: scale(1.1); /* Slightly enlarge the button */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+.navbar .button:hover {
+  background-color: #783F8E; /* Maximum Purple */
 }
