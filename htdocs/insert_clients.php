@@ -1,4 +1,5 @@
-<?php    
+<?php
+// File: insert_clients.php
 include("navigation.php");
 include("database.php");
 
@@ -52,19 +53,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['fileToUpload'])) {
 
 // Insert client data into database
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['full_name'], $_POST['address'], $_POST['contact_number'], $_POST['date_of_birth'])) {
+    $filename = $_FILES['profile-photo']['name'];
+    $fileTmpName = $_FILES['profile-photo']['tmp_name'];
+    $fileSize = $_FILES['profile-photo']['size'];
+    $fileError = $_FILES['profile-photo']['error'];
     $fullName = htmlspecialchars(trim($_POST['full_name']));
     $address = htmlspecialchars(trim($_POST['address']));
     $contactNumber = htmlspecialchars(trim($_POST['contact_number']));
     $dateOfBirth = $_POST['date_of_birth'];
+    
 
-    // Assuming a database connection is available in database.php
-    $sql = "INSERT INTO clients (full_name, address, contact_number, date_of_birth, file_path) 
+    $sql = "INSERT INTO Clients (full_name, address, contact_number, date_of_birth, file_path) 
             VALUES (?, ?, ?, ?, ?)";
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param('sssss', $fullName, $address, $contactNumber, $dateOfBirth, $uploadedFile);
 
         if ($stmt->execute()) {
-            echo "<p style='color: green;'>Client added successfully!</p>";
+            echo "<script> alert('Client added successfully!'); window.location='clients.php';</script>";
         } else {
             echo "<p style='color: red;'>Error adding client: " . $stmt->error . "</p>";
         }
@@ -76,6 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['full_name'], $_POST['a
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,7 +100,7 @@ $conn->close();
 
     <div class="form-container">
         <h2>Insert New Client</h2>
-        <form action="clients.php" method="POST" enctype="multipart/form-data">
+        <form action="insert_clients.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="full_name">Full Name:</label>
                 <input type="text" id="full_name" name="full_name" required>

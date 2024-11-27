@@ -84,6 +84,7 @@ $result = $conn->query($sql);
 
     <table>
         <tr>
+            <th>Profile Picture</th>
             <th>Client ID</th>
             <th>Full Name</th>
             <th>Address</th>
@@ -91,6 +92,8 @@ $result = $conn->query($sql);
             <th>Date of Birth</th>
             <th>Actions</th>
         </tr>
+    
+    
 
         <?php
         if ($result->num_rows > 0) {

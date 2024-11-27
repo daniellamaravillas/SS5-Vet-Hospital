@@ -52,7 +52,12 @@ if ($result = $conn->query($sql)) {
     </style>
 </head>
 <body>
-    <h1>Appointments</h1>
+    <h1>Appointments</h1> <br>
+
+    <div class="nav-container">
+        <a href="appointments,php" class="nav-link">Appointments</a>
+        <a href="insert_appointments.php" class="nav-link">Insert Appointments</a>
+    </div>
     <?php if (!empty($appointments)): ?>
         <table>
             <thead>
