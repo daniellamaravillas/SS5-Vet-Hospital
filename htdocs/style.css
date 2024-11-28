@@ -23,17 +23,31 @@ h1 {
   color: #FBFADA; /* Light beige text */
   padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center; /* Center the navigation bar */
+  align-items: center; /* Center items vertically */
   width: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.navbar h1 a {
-  text-decoration: none;
-  color: #FBFADA;
-  font-size: 1.5rem;
-  font-weight: bold;
+.navbar-content {
+  display: flex;
+  justify-content: space-between; /* Space between logo and links */
+  align-items: center; /* Center items vertically */
+  width: 100%;
+  max-width: 1200px; /* Adjust as needed */
+}
+
+.logo-container {
+  display: flex;
+  justify-content: flex-start; /* Align the logo to the left */
+  align-items: center; /* Center the logo vertically */
+}
+
+.logo {
+  width: 100px; /* Adjust the size as needed */
+  height: auto;
+  display: block;
+  border-radius: 50%; /* Make the logo circular */
 }
 
 .nav-links {
@@ -182,4 +196,12 @@ button:hover {
   form {
       width: 90%;
   }
+}
+
+.client-image {
+  width: 100px; /* Adjust the width as needed */
+  height: auto;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  margin: 5px; /* Add some margin */
 }

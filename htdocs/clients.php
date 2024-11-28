@@ -24,6 +24,8 @@ $result = $conn->query($sql);
     </script>
 </head>
 <body>
+<h1>Clients</h1> <br>
+
     <div class="nav-container">
         <a href="clients.php" class="nav-link">Clients List</a>
         <a href="insert_clients.php" class="nav-link">Insert Client</a>
@@ -48,7 +50,7 @@ $result = $conn->query($sql);
                 // Display the image if file_path exists
                 echo "<td>";
                 if ($row['file_path']) {
-                    echo "<img src='uploads/{$row['file_path']}' style='width:30px;'>";
+                    echo "<img src='uploads/{$row['file_path']}' style='width:90px;'>";
                 } else {
                     echo "<span style='font-size:10px;'>No image uploaded</span>";
                 }

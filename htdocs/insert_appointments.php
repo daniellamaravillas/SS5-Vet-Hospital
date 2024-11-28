@@ -13,7 +13,7 @@ if ($result = $conn->query($petQuery)) {
         $pets[] = $row;
     }
 } else {
-    echo "Error fetching pets: " . $conn->error;
+    echo "<p>Error fetching pets: " . htmlspecialchars($conn->error) . "</p>";
 }
 
 // Fetch veterinarians
@@ -23,7 +23,7 @@ if ($result = $conn->query($veterinarianQuery)) {
         $veterinarians[] = $row;
     }
 } else {
-    echo "Error fetching veterinarians: " . $conn->error;
+    echo "<p>Error fetching veterinarians: " . htmlspecialchars($conn->error) . "</p>";
 }
 
 // Handle form submission
@@ -32,16 +32,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $employeeID = $_POST['employeeID'] ?? null;
     $date = $_POST['date'] ?? null;
     $time = $_POST['time'] ?? null;
+    $contactNumber = $_POST['contact_number'] ?? null; // New field for contact number
 
-    if ($petID && $employeeID && $date && $time) {
-        $insertQuery = "INSERT INTO Appointments (petID, employeesID, date, time) VALUES (?, ?, ?, ?)";
+    if ($petID && $employeeID && $date && $time && $contactNumber) {
+        $insertQuery = "INSERT INTO Appointments (petID, employeesID, date, time, contact_number) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insertQuery);
-        $stmt->bind_param("iiss", $petID, $employeeID, $date, $time);
+        $stmt->bind_param("iisss", $petID, $employeeID, $date, $time, $contactNumber);
 
         if ($stmt->execute()) {
-            echo "<p>Appointment created successfully!</p>";
+            echo "<script>
+                alert('Appointment created successfully!');
+                window.location.href = 'appointments.php'; // Redirect to appointments page
+            </script>";
+            exit; // Ensure the script stops after redirect
         } else {
-            echo "<p>Error creating appointment: " . $stmt->error . "</p>";
+            echo "<p>Error creating appointment: " . htmlspecialchars($stmt->error) . "</p>";
         }
     } else {
         echo "<p>Please fill in all fields.</p>";
@@ -85,6 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label for="time">Time:</label>
         <input type="time" name="time" id="time" required>
+
+        <label for="contact_number">Contact Number:</label>
+        <input type="text" name="contact_number" id="contact_number" required>
 
         <button type="submit">Create Appointment</button>
     </form>

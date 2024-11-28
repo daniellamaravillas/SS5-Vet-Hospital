@@ -25,6 +25,7 @@ $result = $conn->query($sql);
     </script>
 </head>
 <body>
+<h1>Pets</h1> <br>
 
     <div class="nav-container">
         <a href="pets.php" class="nav-link">Pet List</a>
@@ -51,7 +52,7 @@ $result = $conn->query($sql);
                 // Display image if image_name exists
                 echo "<td>";
                 if ($row['image_name']) {
-                    echo "<img src='uploads/" . $row['image_name'] . "' style='width:50px; height:50px;'>";
+                    echo "<img src='uploads/" . $row['image_name'] . "' style='width:90px; height:70px;'>";
                 } else {
                     echo "<span style='font-size:10px;'>No image</span>";
                 }

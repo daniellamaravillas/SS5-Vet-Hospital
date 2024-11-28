@@ -76,7 +76,7 @@ $result = $conn->query($sql);
     </script>
 </head>
 <body>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
+<h1>Employees</h1> 
     <div class="nav-container">
         <a href="employees.php" class="nav-link">Employee List</a>
         <a href="insert_employee.php" class="nav-link">Insert Employee</a>
