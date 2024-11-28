@@ -1,45 +1,185 @@
+/* General Styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #C8C6D7; /* Lavender Gray */
+  background-color: #FBFADA; /* Soft beige background */
+  color: #12372A; /* Dark green text */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
+h1 {
+  color: #12372A;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Navigation Bar */
 .navbar {
+  background-color: #12372A; /* Dark green background */
+  color: #FBFADA; /* Light beige text */
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #4A4063; /* English Violet */
-  padding: 1rem 2rem;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.navbar a {
-  color: #C8C6D7; /* Lavender Gray */
+.navbar h1 a {
   text-decoration: none;
-  font-size: 1.2rem;
-  margin: 0 1rem;
+  color: #FBFADA;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #FBFADA;
+  font-size: 1rem;
   transition: color 0.3s ease;
 }
 
-.navbar a:hover {
-  color: #BFACC8; /* Thistle */
+.nav-links li a:hover {
+  color: #ADBC9F; /* Light green hover */
 }
 
-.navbar .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #783F8E; /* Maximum Purple */
+/* Navigation Links Container */
+.nav-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
-.navbar .button {
-  background-color: #4F1271; /* Blue Violet Color Wheel */
-  color: #FFF;
-  padding: 0.5rem 1rem;
-  border: none;
+.nav-link {
+  text-decoration: none;
+  background-color: #436850; /* Medium green background */
+  color: #FBFADA; /* Light beige text */
+  padding: 10px 15px;
   border-radius: 5px;
-  cursor: pointer;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
-.navbar .button:hover {
-  background-color: #783F8E; /* Maximum Purple */
+.nav-link:hover {
+  background-color: #12372A; /* Dark green hover */
+}
+
+/* Table Styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #FFFFFF; /* White background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 10px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ADBC9F; /* Light green border */
+}
+
+th {
+  background-color: #12372A; /* Dark green background */
+  color: #FBFADA; /* Light beige text */
+  font-weight: bold;
+}
+
+td {
+  color: #12372A; /* Dark green text */
+}
+
+tr:hover td {
+  background-color: #F5F5F5; /* Light hover effect */
+}
+
+/* Button Styles */
+button {
+  background-color: #436850; /* Medium green background */
+  color: #FBFADA; /* Light beige text */
+  border: none;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #12372A; /* Dark green hover */
+  transform: translateY(-2px);
+}
+
+/* Form Styles */
+form {
+  background-color: #FFFFFF; /* White background for form */
+  border-radius: 8px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ADBC9F; /* Subtle green border */
+  border-radius: 4px;
+  background-color: #F5F5F5; /* Light grey background */
+  color: #12372A;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: #436850; /* Medium green for focus state */
+  background-color: #FFFFFF;
+  box-shadow: 0 0 5px rgba(67, 104, 80, 0.5);
+}
+
+button {
+  background-color: #436850; /* Medium green button */
+  color: #FBFADA; /* Light beige text */
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #12372A; /* Dark green on hover */
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  form {
+      width: 90%;
+  }
 }

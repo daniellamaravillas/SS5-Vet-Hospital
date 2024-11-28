@@ -36,26 +36,13 @@ if ($result = $conn->query($sql)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointments</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Appointments</h1> <br>
 
     <div class="nav-container">
-        <a href="appointments,php" class="nav-link">Appointments</a>
+        <a href="appointments.php" class="nav-link">Appointments</a>
         <a href="insert_appointments.php" class="nav-link">Insert Appointments</a>
     </div>
     <?php if (!empty($appointments)): ?>
