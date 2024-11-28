@@ -1,5 +1,4 @@
 <?php
-// File: insert_clients.php
 include("navigation.php");
 include("database.php");
 
@@ -53,16 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['fileToUpload'])) {
 
 // Insert client data into database
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['full_name'], $_POST['address'], $_POST['contact_number'], $_POST['date_of_birth'])) {
-    $filename = $_FILES['profile-photo']['name'];
-    $fileTmpName = $_FILES['profile-photo']['tmp_name'];
-    $fileSize = $_FILES['profile-photo']['size'];
-    $fileError = $_FILES['profile-photo']['error'];
     $fullName = htmlspecialchars(trim($_POST['full_name']));
     $address = htmlspecialchars(trim($_POST['address']));
     $contactNumber = htmlspecialchars(trim($_POST['contact_number']));
     $dateOfBirth = $_POST['date_of_birth'];
-    
 
+    // Insert into database
     $sql = "INSERT INTO Clients (full_name, address, contact_number, date_of_birth, file_path) 
             VALUES (?, ?, ?, ?, ?)";
     if ($stmt = $conn->prepare($sql)) {
@@ -88,9 +83,6 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Client</title>
-    <style>
-        /* Styling remains the same */
-    </style>
 </head>
 <body>
     <div class="nav-container">
@@ -114,15 +106,19 @@ $conn->close();
                 <input type="text" id="contact_number" name="contact_number" required>
             </div>
             <div class="form-group">
-                <label for="date_of_birth">Date of Birth:</label>
-                <input type="date" id="date_of_birth" name="date_of_birth" required>
-            </div>
-            <div class="form-group">
-                <label for="fileToUpload">Choose a file to upload:</label>
-                <input type="file" name="fileToUpload" id="fileToUpload" required>
-            </div>
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
-    </div>
+                        <!-- Continue the form inside the <body> tag -->
+        <div class="form-group">
+            <label for="date_of_birth">Date of Birth:</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" required>
+        </div>
+        <div class="form-group">
+            <label for="fileToUpload">Choose a file to upload:</label>
+            <input type="file" name="fileToUpload" id="fileToUpload" required>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</div>
+
 </body>
 </html>
+
